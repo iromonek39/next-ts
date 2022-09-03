@@ -1,5 +1,5 @@
 // import Head from 'next/head'
-import { css } from '@emotion/react'
+// import { css } from '@emotion/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
@@ -16,14 +16,14 @@ const Header = () => {
     <>
       <header>
         {isHome ? (
-          <div css={HeaderPrev}>
-            <span css={HeaderPrevText}>戻る</span>
+          <div>
+            <span css={{ fontSize: '50px' }}>戻る</span>
           </div>
         ) : (
-          <div css={HeaderPrev}>bbb</div>
+          <div>bbb</div>
         )}
         <button onClick={changeVal}>クリック</button>
-        <p css={HeaderTitle}>{router.pathname}</p>
+        <p>{router.pathname}</p>
         {/* <div
         v-show="this.$route.name !== 'Home'"
         class="header__prev-btn"
@@ -59,9 +59,5 @@ const Header = () => {
     </>
   )
 }
-
-const HeaderPrev = css``
-const HeaderPrevText = css``
-const HeaderTitle = css``
 
 export default Header

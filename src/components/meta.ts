@@ -5,6 +5,7 @@ interface Meta {
 }
 
 export const meta: Meta[] = [
+  // export const meta: Array<Meta> = [
   {
     route: '/',
     title: 'TOP',
