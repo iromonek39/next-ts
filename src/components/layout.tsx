@@ -1,6 +1,7 @@
-import Head from 'next/head'
-import Link from 'next/link'
+// import Head from 'next/head'
+// import Link from 'next/link'
 import { ReactNode } from 'react'
+import Header from './header'
 
 type Props = {
   children?: ReactNode
@@ -9,15 +10,7 @@ type Props = {
 const Layout = ({ children }: Props) => {
   return (
     <div>
-      <Head>
-        <title>MyTemplate</title>
-      </Head>
-
-      <header className="">
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </header>
+      <Header />
       <div className="container">{children}</div>
       <footer className=""></footer>
     </div>
