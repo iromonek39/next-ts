@@ -1,8 +1,9 @@
 // import Head from 'next/head'
-// import { css } from '@emotion/react'
+import { css } from '@emotion/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
+import Image from 'next/image'
 
 const Header = () => {
   const router = useRouter()
@@ -14,48 +15,21 @@ const Header = () => {
 
   return (
     <>
-      <header>
-        {isHome ? (
-          <div>
-            <span css={{ fontSize: '50px' }}>戻る</span>
-          </div>
-        ) : (
-          <div>bbb</div>
-        )}
-        <button onClick={changeVal}>クリック</button>
-        <p>{router.pathname}</p>
-        {/* <div
-        v-show="this.$route.name !== 'Home'"
-        class="header__prev-btn"
-        @click="backToPage()">
-        <img
-          src="@/assets/img/icon/icon-prev.png"
-          alt="prev">
-        <span class="header__prev-btn-text">戻る</span>
-      </div>
-      <p class="header__title">
-        {{ this.$route.meta.headerName }}
-      </p>
-      <p class="header__course">{{ course }}</p>
-      <div
-        v-if="this.$route.name === 'InputScoreDetail'"
-        class="header__next-btn"
-        @click="nextToHole()">
-        <img
-          src="@/assets/img/icon/icon-next.png"
-          alt="prev">
-        <span
-          :class="nextHole === '進む' ? 'header__next-btn-nextHole': 'header__next-btn__back-InputScore'"
-          class="header__next-btn-text">
-          {{ nextHole }}</span>
-      </div> */}
+      <header
+        css={css`
+          width: 100%;
+          background: #1f8940;
+          padding: 16px 0;
+        `}
+      >
+        <div
+          css={css`
+            margin: 0 32px;
+          `}
+        >
+          <Image src="/logo.png" alt="SUBWAY" width={213} height={42} />
+        </div>
       </header>
-      <Link href="/">
-        <a>home</a>
-      </Link>
-      <Link href="/test">
-        <a>test</a>
-      </Link>
     </>
   )
 }
