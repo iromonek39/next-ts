@@ -16,10 +16,19 @@ const Home: NextPage = () => {
       >
         My subway
       </h1>
-      <Button text="カスタマイズ" link="custom" />
-      <span className={styles.logo}>
-        <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-      </span>
+      <div
+        css={css`
+          width: 100%;
+          text-align: center;
+        `}
+      >
+        <div>
+          <Button text="カスタマイズ" link="custom" />
+        </div>
+        <div>
+          <Button text="ランダム" link="random" />
+        </div>
+      </div>
     </>
   )
 }
