@@ -2,6 +2,26 @@ import { css } from '@emotion/react'
 import Link from 'next/link'
 
 const index = () => {
+  type Sandwich = {
+    name: string
+    id: number
+  }
+
+  const sandwiches: Sandwich[] = [
+    {
+      id: 1,
+      name: 'BLT',
+    },
+    {
+      id: 2,
+      name: 'サラダチキン',
+    },
+    {
+      id: 3,
+      name: 'チリチキン',
+    },
+  ]
+
   return (
     <>
       <div
@@ -17,27 +37,16 @@ const index = () => {
             flex-wrap: wrap;
           `}
         >
-          <li
-            css={css`
-              width: 50%;
-            `}
-          >
-            BLT
-          </li>
-          <li
-            css={css`
-              width: 50%;
-            `}
-          >
-            サラダチキン
-          </li>
-          <li
-            css={css`
-              width: 50%;
-            `}
-          >
-            チリチキン
-          </li>
+          {sandwiches.map((sandwich) => (
+            <li
+              key={sandwich.id}
+              css={css`
+                width: 50%;
+              `}
+            >
+              {sandwich.name}
+            </li>
+          ))}
         </ul>
       </div>
       <Link href="/">トップ</Link>
