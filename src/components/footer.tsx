@@ -18,6 +18,7 @@ const Footer = () => {
       <footer
         css={css`
           margin-top: auto;
+          background: #000;
         `}
       >
         footer
