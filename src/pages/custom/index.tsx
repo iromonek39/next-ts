@@ -1,5 +1,16 @@
 import { css } from '@emotion/react'
 import Link from 'next/link'
+import React from 'react'
+
+type Props = {
+  onClick: (event: React.MouseEvent<HTMLInputElement>) => void
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+  onkeypress: (event: React.KeyboardEvent<HTMLInputElement>) => void
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void
+  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+  onClickDiv: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void
+}
 
 const index = () => {
   type Sandwich = {
@@ -22,6 +33,12 @@ const index = () => {
     },
   ]
 
+  const selectedSandwich = (event: React.MouseEvent<HTMLInputElement>) => {
+    console.log(2)
+
+    console.log(event)
+  }
+
   return (
     <>
       <div
@@ -43,6 +60,7 @@ const index = () => {
               css={css`
                 width: 50%;
               `}
+              onClick={selectedSandwich}
             >
               {sandwich.name}
             </li>
