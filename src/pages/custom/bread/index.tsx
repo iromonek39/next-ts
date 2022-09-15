@@ -4,9 +4,11 @@ import Link from 'next/link'
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from 'app/store'
+import { useState } from 'react'
 
-const index = () => {
+const Index = () => {
   const total = useSelector((state: RootState) => state.total.value)
+  const [plus, setPlus] = useState(0)
   type Bread = {
     name: string
     id: number
@@ -37,7 +39,7 @@ const index = () => {
   ]
 
   const selectedBread = (bread: Bread) => {
-    console.log(total + bread.kcal)
+    setPlus(total + bread.kcal)
   }
 
   return (
@@ -69,9 +71,9 @@ const index = () => {
         </ul>
       </div>
       <Link href="/">トップ</Link>
-      <Result />
+      <Result props={plus} />
     </>
   )
 }
 
-export default index
+export default Index

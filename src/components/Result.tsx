@@ -4,7 +4,7 @@ import { css } from '@emotion/react'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
-const Result = () => {
+const Result = ({ props }) => {
   return (
     <div
       css={css`
@@ -14,7 +14,7 @@ const Result = () => {
       `}
     >
       合計:
-      <p></p>
+      <p>{props}</p>
       <p></p>
     </div>
   )
