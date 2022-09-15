@@ -2,6 +2,8 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 // import { useRouter } from 'next/router'
+import { Provider } from 'react-redux'
+import { store } from 'app/store'
 import Layout from 'components/Layout'
 // import { meta } from 'components/meta'
 
@@ -15,17 +17,19 @@ function MyApp({ Component, pageProps }: AppProps) {
   // })
   return (
     <>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, minimum-scale=1, maximum-scale=1, initial-scale=1.0, user-scalable=no"
-        />
-        {/* <title>{title}</title>
+      <Provider store={store}>
+        <Head>
+          <meta
+            name="viewport"
+            content="width=device-width, minimum-scale=1, maximum-scale=1, initial-scale=1.0, user-scalable=no"
+          />
+          {/* <title>{title}</title>
         <meta name="description" content={description} /> */}
-      </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+        </Head>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Provider>
     </>
   )
 }

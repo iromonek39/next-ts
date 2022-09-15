@@ -2,8 +2,11 @@ import { css } from '@emotion/react'
 import Result from 'components/Result'
 import Link from 'next/link'
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import type { RootState } from 'app/store'
 
 const index = () => {
+  const total = useSelector((state: RootState) => state.total.value)
   type Bread = {
     name: string
     id: number
@@ -33,8 +36,8 @@ const index = () => {
     },
   ]
 
-  const selectedBread = (event: React.MouseEvent<HTMLInputElement>) => {
-    console.log(event)
+  const selectedBread = (bread: Bread) => {
+    console.log(total + bread.kcal)
   }
 
   return (
@@ -58,7 +61,7 @@ const index = () => {
               css={css`
                 width: 50%;
               `}
-              onClick={selectedBread}
+              onClick={() => selectedBread(bread)}
             >
               {bread.name},{bread.kcal}kcal
             </li>

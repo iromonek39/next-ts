@@ -1,9 +1,12 @@
 import { css } from '@emotion/react'
-import Context from 'lib/store/context'
-import { reducer } from 'lib/store/reducers'
+// import Context from 'lib/store/context'
+// import { reducer } from 'lib/store/reducers'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import React, { useContext, useReducer, useState } from 'react'
+import type { RootState } from 'app/store'
+import { useSelector, useDispatch } from 'react-redux'
+import { updateValue } from '../../features/total/totalSlice'
+import React, { useReducer, useState } from 'react'
 
 type Props = {
   onClick: (event: React.MouseEvent<HTMLInputElement>) => void
@@ -18,8 +21,10 @@ type Props = {
 const Index = () => {
   const router = useRouter()
   const [totalPrice, setTotalPrice] = useState(0)
-  const initialState = { sandwichePrice: 0 }
-  const [state, dispatch] = useReducer(reducer, initialState)
+  const total = useSelector((state: RootState) => state.total.value)
+  const dispatch = useDispatch()
+  // const initialState = { sandwichePrice: 0 }
+  // const [state, dispatch] = useReducer(reducer, initialState)
 
   type Sandwich = {
     name: string
@@ -50,42 +55,39 @@ const Index = () => {
   ]
 
   const selectedSandwich = (sandwich: Sandwich) => {
-    setTotalPrice(sandwich.price)
-    dispatch({ type: 'TOTAL' })
-    // router.push('/custom/bread')
+    dispatch(updateValue(sandwich.kcal))
+    router.push('/custom/bread')
   }
 
   return (
     <>
-      <Context.Provider value={{ state, dispatch }}>
-        <div
+      <div
+        css={css`
+          width: 50%;
+          margin: 0 auto;
+        `}
+      >
+        <ul
           css={css`
-            width: 50%;
-            margin: 0 auto;
+            display: flex;
+            width: 100%;
+            flex-wrap: wrap;
           `}
         >
-          <ul
-            css={css`
-              display: flex;
-              width: 100%;
-              flex-wrap: wrap;
-            `}
-          >
-            {sandwiches.map((sandwich) => (
-              <li
-                key={sandwich.id}
-                css={css`
-                  width: 50%;
-                `}
-                onClick={() => selectedSandwich(sandwich)}
-              >
-                {sandwich.name},¥{sandwich.price}/{sandwich.kcal}kcal
-              </li>
-            ))}
-          </ul>
-        </div>
-        <Link href="/">トップ</Link>
-      </Context.Provider>
+          {sandwiches.map((sandwich) => (
+            <li
+              key={sandwich.id}
+              css={css`
+                width: 50%;
+              `}
+              onClick={() => selectedSandwich(sandwich)}
+            >
+              {sandwich.name},¥{sandwich.price}/{sandwich.kcal}kcal
+            </li>
+          ))}
+        </ul>
+      </div>
+      <Link href="/">トップ</Link>
     </>
   )
 }
