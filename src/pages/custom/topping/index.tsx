@@ -1,52 +1,52 @@
 import { css } from '@emotion/react'
-// import Context from 'lib/store/context'
-// import { reducer } from 'lib/store/reducers'
+import Result from 'components/Result'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { updateValue } from '../../../features/total/totalSlice'
 import type { RootState } from 'app/store'
-import React, { useEffect, useReducer, useState } from 'react'
-import Result from 'components/Result'
+import { useState } from 'react'
 
 const Index = () => {
-  const router = useRouter()
-  const [totalPrice, setTotalPrice] = useState(0)
   const dispatch = useDispatch()
   const total = useSelector((state: RootState) => state.total.value)
   const [plus, setPlus] = useState(0)
-  type Bread = {
+  type Topping = {
     name: string
     id: number
+    price: number
     kcal: number
   }
 
-  const Breads: Bread[] = [
+  const toppings: Topping[] = [
     {
       id: 1,
-      name: 'ウィート',
+      name: 'ナチュラルスライスチーズ(2枚)',
+      price: 50,
       kcal: 180,
     },
     {
       id: 2,
-      name: 'ホワイト',
+      name: 'クリームタイプチーズ(20g)',
+      price: 70,
       kcal: 179,
     },
     {
       id: 3,
-      name: 'セサミ',
+      name: 'マスカルポーネチーズ(20g)',
+      price: 100,
       kcal: 196,
     },
     {
       id: 4,
-      name: 'ハニーオーツ',
+      name: 'たまご(1スクープ)',
+      price: 70,
       kcal: 190,
     },
   ]
 
-  const selectedBread = (bread: Bread) => {
-    dispatch(updateValue(total + bread.kcal))
-    router.push('/custom/topping')
+  const selectedTopping = (topping: Topping) => {
+    dispatch(updateValue(total + topping.kcal))
   }
 
   useEffect(() => {
@@ -68,15 +68,15 @@ const Index = () => {
             flex-wrap: wrap;
           `}
         >
-          {Breads.map((bread) => (
+          {toppings.map((topping) => (
             <li
-              key={bread.id}
+              key={topping.id}
               css={css`
                 width: 50%;
               `}
-              onClick={() => selectedBread(bread)}
+              onClick={() => selectedTopping(topping)}
             >
-              {bread.name},{bread.kcal}kcal
+              {topping.name},{topping.kcal}kcal
             </li>
           ))}
         </ul>
